@@ -116,6 +116,10 @@ public:
   // Does this device need non-text content?
   virtual GBool needNonText() { return gTrue; }
 
+  // Does this device expect valid UTF-8 text? (i.e, discard characters for
+  // which cannot determine UTF-8 equivalents due to a missing unicode mapping)
+  virtual GBool needUnicodeText() { return gFalse; }
+
   // Does this device require incCharCount to be called for text on
   // non-shown layers?
   virtual GBool needCharCount() { return gFalse; }

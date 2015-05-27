@@ -3934,6 +3934,16 @@ void Gfx::doShowText(GooString *s) {
   int len, n, uLen, nChars, nSpaces, i;
 
   font = state->getFont();
+
+  // printf("encoding_name = %s, unimap = %d\n", font->getEncodingName()->getCString(), font->hasToUnicodeCMap());
+
+  if (out->needUnicodeText()) {
+    if (!font->hasToUnicodeCMap() && font->getEncodingName()->cmp("Identity-H") == 0) {
+      // No conversion to unicode available, drop characters.
+      return;
+    }
+  }
+
   wMode = font->getWMode();
 
   if (out->useDrawChar()) {
