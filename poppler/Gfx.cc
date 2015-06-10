@@ -3934,6 +3934,12 @@ void Gfx::doShowText(GooString *s) {
   int len, n, uLen, nChars, nSpaces, i;
 
   font = state->getFont();
+
+  if (out->needUnicodeText() && !font->hasToUnicodeCMap()) {
+    // No conversion to unicode available, drop characters.
+    return;
+  }
+
   wMode = font->getWMode();
 
   if (out->useDrawChar()) {
