@@ -73,9 +73,9 @@
 #include "FlateStream.h"
 #endif
 
-#ifdef ENABLE_LIBOPENJPEG
+#ifdef USE_OPENJPEG2
 #include "JPEG2000Stream.h"
-#else
+#elif ENABLE_LIBOPENJPEG
 #include "JPXStream.h"
 #endif
 
