@@ -107,6 +107,13 @@ target_link_libraries(pdftotext ${common_libs})
 install(TARGETS pdftotext DESTINATION bin)
 install(FILES pdftotext.1 DESTINATION share/man/man1)
 
+# dumpglyphs
+set(dumpglyphs_SOURCES ${common_srcs}
+  dumpglyphs.cc
+)
+add_executable(dumpglyphs ${dumpglyphs_SOURCES})
+target_link_libraries(dumpglyphs ${common_libs})
+
 # pdftohtml
 set(pdftohtml_SOURCES ${common_srcs}
   pdftohtml.cc
