@@ -605,7 +605,7 @@ void Splash::pipeRun(SplashPipe *pipe) {
     //----- blend function
 
     if (state->blendFunc) {
-#ifdef SPLASH_CMYK
+#if SPLASH_CMYK
       if (bitmap->mode == splashModeDeviceN8) {
         for (int k = 4; k < 4 + SPOT_NCOMPS; k++) {
           cBlend[k] = 0;
@@ -3208,6 +3208,8 @@ void Splash::arbitraryTransformMask(SplashImageMaskSource src, void *srcData,
 			         ((SplashCoord)y + 0.5 - section[i].yb0) *
 			           section[i].dxdyb,
 			       glyphMode);
+      if (unlikely(xa < 0))
+        xa = 0;
       // make sure narrow images cover at least one pixel
       if (xa == xb) {
 	++xb;
